@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminario Integral de Bruxismo</title>
+    <style>
+        /* Variables de diseño */
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #f3f4f6;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --radius: 8px;
+        }
+
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Encabezado */
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: var(--radius);
+            margin: 1rem;
+        }
+
+        /* Mensaje de bienvenida */
+        #mensaje-bienvenida {
+            text-align: center;
+            padding: 1rem;
+            background-color: #28a745;
+            color: white;
+            margin: 1rem;
+            border-radius: var(--radius);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Estilos para la imagen */
+        .contenedor-imagen {
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .imagen-odontologo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            padding: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+
+        /* Navegación */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Secciones */
+        section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background-color: var(--secondary-color);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Botones */
+        .button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #3730a3;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--secondary-color);
+            border-radius: var(--radius);
+        }
+
+        /* Estilos personalizados adicionales */
+        .whatsapp-link {
+            color: #25d366;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        .lista-temas {
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .lista-temas li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                justify-content: flex-start;
+            }
+
+            section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cabecera -->
+        <header>
+            <h1>Seminario Integral para el Bruxismo</h1>
+            <p>Aplicación de Toxina Botulínica y Manejo Clínico</p>
+        </header>
+
+        <!-- Imagen del odontólogo -->
+        <div class="contenedor-imagen">
+            <img src="https://img.freepik.com/fotos-premium/dibujos-animados-dentista-3d_747552-43448.jpg" 
+                 alt="Odontólogo caricatura" 
+                 class="imagen-odontologo">
+        </div>
+
+        <!-- Navegación -->
+        <nav>
+            <a href="#programa">Programa</a>
+            <a href="https://service.uan.edu.co/fresa/#continuada/?id=3395" target="_blank">Inscripción Oficial</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+
+        <!-- Contenido Principal -->
+        <main>
+            <section id="introduccion">
+                <h2>Introducción al Bruxismo</h2>
+                <ul class="lista-temas">
+                    <li>Signos y síntomas característicos</li>
+                    <li>Medidas de tratamiento actualizadas</li>
+                    <li>Evaluación diagnóstica integral</li>
+                </ul>
+            </section>
+
+            <section id="toxina">
+                <h2>Toxina Botulínica en Odontología</h2>
+                <ul class="lista-temas">
+                    <li>Usos terapéuticos actuales</li>
+                    <li>Indicaciones precisas</li>
+                    <li>Tipos disponibles y selección</li>
+                </ul>
+            </section>
+
+            <section id="protocolo">
+                <h2>Protocolo de Activación</h2>
+                <ol class="lista-temas">
+                    <li>Preparación inicial del dispositivo</li>
+                    <li>Técnica de colocación precisa</li>
+                    <li>Verificación de ajuste óptimo</li>
+                </ol>
+                <a href="https://service.uan.edu.co/fresa/#continuada/?id=3395" class="button" target="_blank">
+                    Registrarse Ahora
+                </a>
+            </section>
+        </main>
+
+        <!-- Pie de página -->
+        <footer id="contacto">
+            <p>© 2024 Seminario Integral de Bruxismo</p>
+            <a href="https://wa.me/573015437747" class="whatsapp-link" target="_blank">
+                Contacto WhatsApp: 301 5437747 - Ana España
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // Función para mostrar el prompt de bienvenida
+        function mostrarBienvenida() {
+            const nombre = prompt("¡Bienvenido al Seminario de Bruxismo! \nPor favor ingrese su nombre:");
+            
+            const mensajeBienvenida = document.createElement('div');
+            mensajeBienvenida.id = 'mensaje-bienvenida';
+            
+            if(nombre && nombre.trim() !== '') {
+                mensajeBienvenida.textContent = `¡Bienvenido ${nombre}!`;
+            } else {
+                mensajeBienvenida.textContent = "¡Bienvenido Invitado!";
+            }
+            
+            const header = document.querySelector('header');
+            header.insertAdjacentElement('afterend', mensajeBienvenida);
+        }
+
+        // Ejecutar cuando el documento esté cargado
+        document.addEventListener('DOMContentLoaded', mostrarBienvenida);
+    </script>
+</body>
+</html>
