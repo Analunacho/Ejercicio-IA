@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi experiencia con la IA</title>
+    <style>
+        :root {
+            --color-primario: #2c3e50;
+            --color-secundario: #3498db;
+            --color-accento: #e74c3c;
+            --color-texto: #34495e;
+            --color-fondo: #ecf0f1;
+            --color-borde: #bdc3c7;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--color-texto);
+            background-color: var(--color-fondo);
+        }
+        
+        header {
+            background-color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--color-borde);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: var(--color-primario);
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        h2.subtitulo, h4 {
+            color: var(--color-secundario);
+            font-size: 1.5em;
+            margin-top: 0;
+            font-weight: 400;
+        }
+        
+        h4 {
+            font-size: 1.3em;
+            margin-top: 25px;
+        }
+        
+        nav {
+            background-color: var(--color-primario);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul li a:hover, nav ul li a.activo {
+            background-color: var(--color-secundario);
+            transform: translateY(-2px);
+        }
+        
+        .contenido {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-bottom: 80px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        section.activa {
+            display: block;
+        }
+        
+        h3 {
+            color: var(--color-primario);
+            border-bottom: 2px solid var(--color-secundario);
+            padding-bottom: 8px;
+            font-size: 1.8em;
+            margin-top: 30px;
+        }
+        
+        article {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--color-borde);
+        }
+        
+        p {
+            margin: 15px 0;
+            line-height: 1.7;
+        }
+        
+        .enlace {
+            color: var(--color-secundario);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        
+        .enlace:hover {
+            color: var(--color-accento);
+            transform: translateX(5px);
+        }
+        
+        .lista-enlaces {
+            margin-top: 15px;
+        }
+        
+        .lista-enlaces li {
+            margin-bottom: 10px;
+        }
+        
+        /* Estilos para el carrusel */
+        .carrusel {
+            position: relative;
+            max-width: 800px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .carrusel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carrusel-img {
+            min-width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .carrusel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 18px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carrusel-btn:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .carrusel-btn.prev {
+            left: 10px;
+        }
+        
+        .carrusel-btn.next {
+            right: 10px;
+        }
+        
+        /* Estilos para el juego */
+        .juego-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .opciones-juego {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .opcion-juego {
+            background-color: var(--color-secundario);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .opcion-juego:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+        
+        .resultado-juego {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            min-height: 27px;
+        }
+        
+        .elecciones {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        
+        .eleccion {
+            text-align: center;
+        }
+        
+        .eleccion img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        
+        footer {
+            background-color: var(--color-primario);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            .contenido {
+                margin: 20px 10px;
+                padding: 20px 15px;
+            }
+            
+            .carrusel-img {
+                height: 250px;
+            }
+            
+            .opciones-juego {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mi experiencia con la IA</h1>
+        <h2 class="subtitulo">por Ana Lucia España Moreno</h2>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#" data-seccion="inicio" class="activo">Inicio</a></li>
+            <li><a href="#" data-seccion="preguntas">Preguntas y respuestas</a></li>
+            <li><a href="#" data-seccion="links">Links</a></li>
+            <li><a href="#" data-seccion="ideas">Ideas creativas</a></li>
+        </ul>
+    </nav>
+    
+    <div class="contenido">
+        <!-- Sección Inicio -->
+        <section id="inicio" class="activa">
+            <h3>Mi experiencia</h3>
+            <p>Me tomó un poco comprender cómo funcionaba la IA pero poco a poco fui aprendiendo, descubriendo así que la IA es una herramienta muy poderosa siempre y cuando aprendamos cómo pedirle las cosas, siendo siempre específicos con lo que pedimos.</p>
+            
+            <p>Al principio estaba muy escéptica de la IA y de sus capacidades, pensando que eran muy limitadas sus capacidades, creyendo que simplemente se limitaba a hacer operaciones rápidamente, pero fue toda una sorpresa para mí ver cómo tenía el potencial de crear páginas webs de manera creativa, siendo así el único límite nuestra imaginación.</p>
+        </section>
+        
+        <!-- Sección Preguntas y respuestas -->
+        <section id="preguntas">
+            <h3>Preguntas y respuestas</h3>
+            
+            <article>
+                <h4>¿Qué cosas te parecen sorprendentes de las posibilidades de la IA?</h4>
+                <p>Me parece sorprendente la capacidad de la IA para generar cualquier cosa a partir de una petición, incluso es capaz de cuidar de los detalles que incluso nosotros no tuvimos en cuenta, tales como crear cosas atractivas a la vista, lo que a primera vista no parece tan relevante, pero es sorprendente cómo la IA comprende un concepto abstracto como sería la belleza y lo atractivo.</p>
+            </article>
+            
+            <article>
+                <h4>¿Qué cosas te preocupan y qué sugerencias darías para un mejor futuro?</h4>
+                <p>En lo personal me preocupa que la IA nos remplace y desplace muchos trabajos, ya que tiene capacidades claramente superiores a cualquier ser humano y muchas veces de manera gratuita e instantánea, incluso emulando lo que sería la creatividad. Como sugerencia para un futuro mejor, recomendaría que cada vez más personas aprendan a usar la IA para poder potenciar su trabajo, pero sin depender de ella y dejar de lado los distintos saberes para ejercer una profesión, ni que se estanque en superar sus capacidades solo porque una IA lo hace mucho mejor.</p>
+            </article>
+            
+            <article>
+                <h4>¿Cuáles son tus principales retos personales en tu aprendizaje y adaptación a este nuevo mundo de la IA?</h4>
+                <p>Diría que es el de mejorar mis conocimientos y capacidades como profesional, ya que con el surgimiento de la IA, el mercado se ha vuelto cada vez más exigente. Adicionalmente otro reto sería el de aprender a utilizar la IA de maneras creativas y que me permitan aprender cada vez más y más rápido.</p>
+            </article>
+        </section>
+        
+        <!-- Sección Links -->
+        <section id="links">
+            <h3>Links</h3>
+            
+            <article>
+                <h4>Mi página</h4>
+                <a href="PaginaWeb.html" class="enlace" target="_blank">Click para abrir</a>
+            </article>
+            
+            <article>
+                <h4>Página instructor</h4>
+                <a href="https://emersonuan.github.io/firstwebpage/#tutorial" class="enlace" target="_blank">Click para abrir</a>
+            </article>
+            
+            <article>
+                <h4>Otras páginas</h4>
+                <ul class="lista-enlaces">
+                    <li><a href="https://pixlr.com/es/image-generator/" class="enlace" target="_blank">Generador de imágenes con IA</a></li>
+                    <li><a href="https://www.amaliorey.com/2022/12/28/25-tareas-que-he-probado-con-chatgpt-ejemplos-y-resultados/" class="enlace" target="_blank">Cosas que se pueden hacer con la IA</a></li>
+                    <li><a href="https://www.sas.com/es_co/insights/analytics/what-is-artificial-intelligence.html#:~:text=%C2%BFPor%20qu%C3%A9%20es%20importante%20la,de%20robots%20basada%20en%20hardware." class="enlace" target="_blank">La importancia de la IA</a></li>
+                </ul>
+            </article>
+        </section>
+        
+        <!-- Sección Ideas creativas -->
+        <section id="ideas">
+            <h3>Ideas creativas</h3>
+            
+            <article>
+                <h4>Paisajes generados con IA</h4>
+                <div class="carrusel">
+                    <button class="carrusel-btn prev">&lt;</button>
+                    <div class="carrusel-inner">
+                        <img src="https://cdn.goenhance.ai/user/2024/07/01/ce295d9d-e89f-4794-9356-e5f09196fc5a_0.jpg" alt="Paisaje generado por IA 1" class="carrusel-img">
+                        <img src="https://i.blogs.es/3978e7/1366_2000/450_1000.webp" alt="Paisaje generado por IA 2" class="carrusel-img">
+                        <img src="https://media.foodandtravel.mx/wp-content/uploads/2023/12/Paisaje-inteligencia-artificial-Sydney-1-1024x576.jpg" alt="Paisaje generado por IA 3" class="carrusel-img">
+                        <img src="https://preview.redd.it/three-ai-generated-landscapes-based-on-nms-made-with-v0-d2vraxjvo6f91.png?width=640&crop=smart&auto=webp&s=c57ad993d4d57611e63213a22bc29c8a8fed3eb1" alt="Paisaje generado por IA 4" class="carrusel-img">
+                    </div>
+                    <button class="carrusel-btn next">&gt;</button>
+                </div>
+            </article>
+            
+            <article>
+                <h4>Piedra, papel o tijeras</h4>
+                <div class="juego-container">
+                    <p>Selecciona tu jugada:</p>
+                    <div class="opciones-juego">
+                        <button class="opcion-juego" data-opcion="piedra">Piedra ✊</button>
+                        <button class="opcion-juego" data-opcion="papel">Papel ✋</button>
+                        <button class="opcion-juego" data-opcion="tijeras">Tijeras ✌️</button>
+                    </div>
+                    
+                    <div class="elecciones">
+                        <div class="eleccion">
+                            <p>Tú:</p>
+                            <img id="jugador-eleccion" src="" alt="Tu elección" style="display: none;">
+                        </div>
+                        <div class="eleccion">
+                            <p>IA:</p>
+                            <img id="ia-eleccion" src="" alt="Elección de la IA" style="display: none;">
+                        </div>
+                    </div>
+                    
+                    <div class="resultado-juego" id="resultado"></div>
+                </div>
+            </article>
+        </section>
+    </div>
+    
+    <footer>
+        &copy; 2023 Ana Lucia España Moreno - Todos los derechos reservados
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navegación entre secciones
+            const enlacesMenu = document.querySelectorAll('nav ul li a');
+            const secciones = document.querySelectorAll('.contenido section');
+            
+            enlacesMenu.forEach(enlace => {
+                enlace.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const seccionId = this.getAttribute('data-seccion');
+                    
+                    // Ocultar todas las secciones y quitar clase activo de los enlaces
+                    secciones.forEach(seccion => {
+                        seccion.classList.remove('activa');
+                    });
+                    enlacesMenu.forEach(enlace => {
+                        enlace.classList.remove('activo');
+                    });
+                    
+                    // Mostrar sección seleccionada y marcar enlace como activo
+                    document.getElementById(seccionId).classList.add('activa');
+                    this.classList.add('activo');
+                });
+            });
+            
+            // Carrusel de imágenes
+            const carruselInner = document.querySelector('.carrusel-inner');
+            const carruselImgs = document.querySelectorAll('.carrusel-img');
+            const btnPrev = document.querySelector('.carrusel-btn.prev');
+            const btnNext = document.querySelector('.carrusel-btn.next');
+            let currentIndex = 0;
+            const imgWidth = carruselImgs[0].clientWidth;
+            
+            function updateCarrusel() {
+                carruselInner.style.transform = `translateX(-${currentIndex * imgWidth}px)`;
+            }
+            
+            btnPrev.addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : carruselImgs.length - 1;
+                updateCarrusel();
+            });
+            
+            btnNext.addEventListener('click', () => {
+                currentIndex = (currentIndex < carruselImgs.length - 1) ? currentIndex + 1 : 0;
+                updateCarrusel();
+            });
+            
+            // Juego de piedra, papel o tijeras
+            const opcionesJuego = document.querySelectorAll('.opcion-juego');
+            const resultadoElement = document.getElementById('resultado');
+            const jugadorEleccionImg = document.getElementById('jugador-eleccion');
+            const iaEleccionImg = document.getElementById('ia-eleccion');
+            
+            // Imágenes para las opciones del juego
+            const imagenesOpciones = {
+                piedra: 'https://images.vexels.com/media/users/3/145879/isolated/lists/c5204c11d58726bf04cf7b95d8907d41-ilustracion-de-roca-de-piedra.png',
+                papel: 'https://cdn-icons-png.freepik.com/256/2541/2541988.png?semt=ais_hybrid',
+                tijeras: 'https://images.vexels.com/media/users/3/138665/isolated/lists/7fb3900892f30b08fe778755b427df48-tijeras-de-corte-escolar.png'
+            };
+            
+            opcionesJuego.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const opcionJugador = this.getAttribute('data-opcion');
+                    const opcionIA = ['piedra', 'papel', 'tijeras'][Math.floor(Math.random() * 3)];
+                    
+                    // Mostrar las elecciones
+                    jugadorEleccionImg.src = imagenesOpciones[opcionJugador];
+                    jugadorEleccionImg.style.display = 'block';
+                    iaEleccionImg.src = imagenesOpciones[opcionIA];
+                    iaEleccionImg.style.display = 'block';
+                    
+                    // Determinar el resultado
+                    let resultado;
+                    
+                    if (opcionJugador === opcionIA) {
+                        resultado = "¡Empate!";
+                    } else if (
+                        (opcionJugador === 'piedra' && opcionIA === 'tijeras') ||
+                        (opcionJugador === 'papel' && opcionIA === 'piedra') ||
+                        (opcionJugador === 'tijeras' && opcionIA === 'papel')
+                    ) {
+                        resultado = "¡Ganaste! 🎉";
+                    } else {
+                        resultado = "¡Perdiste! 😢";
+                    }
+                    
+                    resultadoElement.textContent = resultado;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
